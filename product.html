@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product // wagServ</title>
+  <title>Blue Box Mark IV // wagServ</title>
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -20,17 +20,182 @@
   </header>
 
   <main class="container">
-    <h1>Product Detail</h1>
-    <div class="coming-soon">
-      <pre class="ascii coming-soon__art">
-  ___ ___  ___  ___  _   _  ___ _____
- | _ \ _ \/ _ \|   \| | | |/ __|_   _|
- |  _/   / (_) | |) | |_| | (__  | |
- |_| |_|_\\___/|___/ \___/ \___| |_|</pre>
-      <p class="coming-soon__msg">// LOADING PRODUCT DETAILS //</p>
-      <p>Detailed specs, reviews, and ordering will live here.</p>
-      <p><a class="btn" href="/catalog.html">&larr; Back to Catalog</a></p>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb__sep">/</span>
+      <a href="/catalog.html">Catalog</a>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">Blue Box Mark IV</span>
+    </nav>
+
+    <div class="product">
+
+      <!-- Gallery -->
+      <div class="product__gallery">
+        <div class="gallery-main" id="gallery-main">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-label="Blue Box Mark IV - main view">
+            <rect x="40" y="60" width="320" height="180" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="60" y="80" width="280" height="40" fill="none" stroke="currentColor" stroke-width="1"/>
+            <text x="200" y="105" text-anchor="middle" font-family="monospace" font-size="14" fill="currentColor">[ MK IV ]</text>
+            <g stroke="currentColor" stroke-width="1" fill="none">
+              <circle cx="90"  cy="160" r="12"/><circle cx="130" cy="160" r="12"/><circle cx="170" cy="160" r="12"/><circle cx="210" cy="160" r="12"/>
+              <circle cx="90"  cy="200" r="12"/><circle cx="130" cy="200" r="12"/><circle cx="170" cy="200" r="12"/><circle cx="210" cy="200" r="12"/>
+              <circle cx="90"  cy="160" r="3" fill="currentColor"/>
+              <circle cx="130" cy="160" r="3" fill="currentColor"/>
+              <circle cx="170" cy="160" r="3" fill="currentColor"/>
+              <circle cx="210" cy="160" r="3" fill="currentColor"/>
+              <rect x="260" y="150" width="80" height="60" stroke-dasharray="3,3"/>
+              <text x="300" y="184" text-anchor="middle" font-family="monospace" font-size="10" fill="currentColor">SPEAKER</text>
+            </g>
+          </svg>
+        </div>
+        <div class="gallery-thumbs">
+          <button class="gallery-thumb is-active" data-img="main" aria-label="Main view">
+            <svg viewBox="0 0 80 60"><rect x="8" y="12" width="64" height="36" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="34" r="3" fill="currentColor"/><circle cx="40" cy="34" r="3" fill="currentColor"/><circle cx="56" cy="34" r="3" fill="currentColor"/></svg>
+          </button>
+          <button class="gallery-thumb" data-img="side" aria-label="Side view">
+            <svg viewBox="0 0 80 60"><rect x="20" y="14" width="40" height="32" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="20" y1="22" x2="60" y2="22" stroke="currentColor"/><line x1="20" y1="38" x2="60" y2="38" stroke="currentColor"/></svg>
+          </button>
+          <button class="gallery-thumb" data-img="internals" aria-label="Internals">
+            <svg viewBox="0 0 80 60"><rect x="6" y="8" width="68" height="44" fill="none" stroke="currentColor" stroke-width="1"/><line x1="6" y1="20" x2="74" y2="20" stroke="currentColor" stroke-dasharray="2,2"/><line x1="20" y1="8" x2="20" y2="52" stroke="currentColor" stroke-dasharray="2,2"/><line x1="50" y1="8" x2="50" y2="52" stroke="currentColor" stroke-dasharray="2,2"/></svg>
+          </button>
+          <button class="gallery-thumb" data-img="schematic" aria-label="Schematic">
+            <svg viewBox="0 0 80 60"><line x1="6" y1="30" x2="22" y2="30" stroke="currentColor"/><rect x="22" y="22" width="16" height="16" fill="none" stroke="currentColor"/><line x1="38" y1="30" x2="54" y2="30" stroke="currentColor"/><circle cx="58" cy="30" r="4" fill="none" stroke="currentColor"/><line x1="62" y1="30" x2="74" y2="30" stroke="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="product__info">
+        <span class="feature-card__sku">SKU: BBX-MK4</span>
+        <h1>Blue Box Mark IV</h1>
+        <p class="product__rating" aria-label="Rating: 4.5 of 5">
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="rating-num">4.5</span>
+          <span class="rating-count">(127 reviews)</span>
+        </p>
+        <p class="product__price">$149.95</p>
+        <p><span class="stock-badge stock-low">Low stock</span> &mdash; only 3 units left</p>
+
+        <p class="product__lead">
+          The flagship of our phreaking line. Hand-soldered, brass-fitted enclosure.
+          Multi-frequency tone generator with leather carrying case. Ships in plain
+          brown packaging. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+
+        <form class="qty-form" id="qty-form" novalidate>
+          <label for="qty">Quantity:</label>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" data-step="-1" aria-label="Decrease">&minus;</button>
+            <input type="number" id="qty" name="qty" value="1" min="1" max="3" />
+            <button type="button" class="qty-btn" data-step="1" aria-label="Increase">&plus;</button>
+          </div>
+          <button type="submit" class="btn btn--amber">Add to Cart</button>
+        </form>
+
+      </div>
     </div>
+
+    <!-- Tabs -->
+    <div class="tabs" id="tabs">
+      <div role="tablist" class="tabs__list">
+        <button role="tab" class="tab is-active" data-tab="desc"    aria-selected="true">Description</button>
+        <button role="tab" class="tab"           data-tab="specs"   aria-selected="false">Specs</button>
+        <button role="tab" class="tab"           data-tab="reviews" aria-selected="false">Reviews</button>
+      </div>
+
+      <section role="tabpanel" class="tab-panel is-active" data-panel="desc">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. The Blue Box Mark IV represents the culmination of nearly four decades of underground engineering. Each unit is hand-assembled in our workshop using NOS components sourced from Bell System surplus auctions.</p>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Multi-frequency tone generation covers the full operator console range with crystal-controlled accuracy.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Includes leather carrying case, two 9V batteries, frequency reference card, and our 28-page operator's manual printed on archival paper.</p>
+      </section>
+
+      <section role="tabpanel" class="tab-panel" data-panel="specs" hidden>
+        <table class="spec-table">
+          <tbody>
+            <tr><th>Dimensions</th><td>8.0&Prime; &times; 5.0&Prime; &times; 1.5&Prime;</td></tr>
+            <tr><th>Weight</th><td>1.2 lbs (with batteries)</td></tr>
+            <tr><th>Frequency Range</th><td>700 Hz &ndash; 1700 Hz, &plusmn;0.5 Hz</td></tr>
+            <tr><th>Output Level</th><td>-12 dBm into 600&Omega;</td></tr>
+            <tr><th>Power</th><td>2&times; 9V batteries (included)</td></tr>
+            <tr><th>Battery Life</th><td>~40 hours typical</td></tr>
+            <tr><th>Enclosure</th><td>Brass-fitted aluminum, satin-blue powder coat</td></tr>
+            <tr><th>Compatibility</th><td>Standard analog phone lines (loop start)</td></tr>
+            <tr><th>Warranty</th><td>90 days against defects in workmanship</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section role="tabpanel" class="tab-panel" data-panel="reviews" hidden>
+        <article class="review">
+          <header class="review__head">
+            <strong>cap'n_phreak</strong>
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="review__date">04/12/2026</span>
+          </header>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tones are spot-on, build quality is excellent, leather case is a nice touch. Worth every penny.</p>
+        </article>
+        <article class="review">
+          <header class="review__head">
+            <strong>0xMARGE</strong>
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            <span class="review__date">03/29/2026</span>
+          </header>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excellent unit, only knocked off a star because the manual could use better diagrams.</p>
+        </article>
+        <article class="review">
+          <header class="review__head">
+            <strong>night_dialer</strong>
+            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="review__date">03/14/2026</span>
+          </header>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation. Replacement for my old Mark II that finally gave out after 22 years. The Mark IV is a clear upgrade.</p>
+        </article>
+      </section>
+    </div>
+
+    <!-- FAQ accordion -->
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="accordion" id="faq">
+      <div class="accordion__item">
+        <button class="accordion__head" aria-expanded="false">
+          <span class="accordion__icon" aria-hidden="true">+</span>
+          Is this device legal to own?
+        </button>
+        <div class="accordion__body" hidden>
+          <p>Lorem ipsum dolor sit amet. The device itself is sold as a hobbyist tone generator. Use on the public switched telephone network may be subject to local regulations &mdash; we recommend consulting an attorney before deployment.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__head" aria-expanded="false">
+          <span class="accordion__icon" aria-hidden="true">+</span>
+          How is the unit shipped?
+        </button>
+        <div class="accordion__body" hidden>
+          <p>Sed do eiusmod tempor incididunt. All orders ship via USPS Priority Mail in plain brown packaging. No company branding appears on the exterior. Tracking is provided via email upon dispatch.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__head" aria-expanded="false">
+          <span class="accordion__icon" aria-hidden="true">+</span>
+          Do you accept payment in cash?
+        </button>
+        <div class="accordion__body" hidden>
+          <p>Ut enim ad minim veniam. Yes &mdash; cash is preferred, in fact. Mail US currency in a folded sheet of carbon paper to the address on the order confirmation. We also accept money orders.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__head" aria-expanded="false">
+          <span class="accordion__icon" aria-hidden="true">+</span>
+          What's the difference between Mark III and Mark IV?
+        </button>
+        <div class="accordion__body" hidden>
+          <p>Duis aute irure dolor in reprehenderit. The Mark IV adds crystal-controlled frequency stability (vs. RC-network tuning), an upgraded brass-fitted enclosure, and replaces the speaker grille with a finer mesh.</p>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer class="site-footer">
@@ -40,5 +205,114 @@
       <span>SYSOP: 0xDEADBEEF</span>
     </div>
   </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="cart-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__panel">
+      <header class="modal__head">
+        <h2 id="modal-title">// ITEM ADDED //</h2>
+        <button class="modal__close" data-close="1" aria-label="Close">&times;</button>
+      </header>
+      <div class="modal__body">
+        <p>The following has been added to your cart:</p>
+        <table class="spec-table">
+          <tbody>
+            <tr><th>Item</th><td>Blue Box Mark IV</td></tr>
+            <tr><th>SKU</th><td class="mono">BBX-MK4</td></tr>
+            <tr><th>Quantity</th><td id="modal-qty">1</td></tr>
+            <tr><th>Unit Price</th><td>$149.95</td></tr>
+            <tr><th>Subtotal</th><td id="modal-total" class="text-bright">$149.95</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <footer class="modal__foot">
+        <button class="btn" data-close="1">Continue Shopping</button>
+        <a class="btn btn--amber" href="#" onclick="return false;">Proceed to Checkout</a>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // ---- Gallery ---------------------------------------------------
+    const main = document.getElementById("gallery-main");
+    const thumbs = document.querySelectorAll(".gallery-thumb");
+    thumbs.forEach(t => {
+      t.addEventListener("click", () => {
+        thumbs.forEach(x => x.classList.remove("is-active"));
+        t.classList.add("is-active");
+        // swap main content with the thumb's SVG, but bigger
+        main.innerHTML = t.innerHTML.replace(/viewBox="[^"]+"/, 'viewBox="0 0 400 300"');
+      });
+    });
+
+    // ---- Tabs ------------------------------------------------------
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll(".tab-panel");
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });
+        panels.forEach(p => { p.classList.remove("is-active"); p.hidden = true; });
+        tab.classList.add("is-active");
+        tab.setAttribute("aria-selected", "true");
+        const target = document.querySelector(`[data-panel="${tab.dataset.tab}"]`);
+        target.classList.add("is-active");
+        target.hidden = false;
+      });
+    });
+
+    // ---- Accordion -------------------------------------------------
+    document.querySelectorAll(".accordion__head").forEach(head => {
+      head.addEventListener("click", () => {
+        const body = head.nextElementSibling;
+        const open = head.getAttribute("aria-expanded") === "true";
+        head.setAttribute("aria-expanded", String(!open));
+        head.querySelector(".accordion__icon").textContent = open ? "+" : "−";
+        body.hidden = open;
+      });
+    });
+
+    // ---- Quantity controls ----------------------------------------
+    const qtyInput = document.getElementById("qty");
+    document.querySelectorAll(".qty-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const step = parseInt(btn.dataset.step, 10);
+        const min = parseInt(qtyInput.min, 10);
+        const max = parseInt(qtyInput.max, 10);
+        const next = Math.max(min, Math.min(max, parseInt(qtyInput.value, 10) + step));
+        qtyInput.value = next;
+      });
+    });
+
+    // ---- Modal -----------------------------------------------------
+    const modal = document.getElementById("cart-modal");
+    const modalQty = document.getElementById("modal-qty");
+    const modalTotal = document.getElementById("modal-total");
+    const PRICE = 149.95;
+
+    document.getElementById("qty-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const q = parseInt(qtyInput.value, 10) || 1;
+      modalQty.textContent = q;
+      modalTotal.textContent = "$" + (q * PRICE).toFixed(2);
+      modal.hidden = false;
+      requestAnimationFrame(() => modal.classList.add("is-open"));
+    });
+
+    modal.addEventListener("click", e => {
+      if (e.target.dataset.close) {
+        modal.classList.remove("is-open");
+        setTimeout(() => modal.hidden = true, 200);
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !modal.hidden) {
+        modal.classList.remove("is-open");
+        setTimeout(() => modal.hidden = true, 200);
+      }
+    });
+  </script>
+
 </body>
 </html>

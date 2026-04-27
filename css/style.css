@@ -1054,6 +1054,139 @@ input[type="file"]::file-selector-button:hover {
   margin-bottom: 1rem;
 }
 
+/* ---------- 404 page ---------- */
+
+.error-404 {
+  margin: 2rem 0;
+  padding: 2rem;
+}
+
+.error-404__art {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-bright);
+  margin: 0 0 1rem;
+}
+
+.error-404__msg {
+  text-align: center;
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 1.5rem;
+}
+
+.error-404__shell {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  margin: 0 0 1.2rem;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.error-404__shell .text-bright { color: var(--text-bright); text-shadow: var(--shadow-glow); }
+
+/* ---------- Auth (login / signup) ---------- */
+
+.auth-wrap {
+  max-width: 540px;
+  margin: 1rem auto 2rem;
+}
+
+.auth-form { display: block; }
+
+.auth-form .field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.auth-footnote {
+  margin-top: 1.2rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.forgot-link { font-size: 0.9rem; }
+
+/* Password show/hide */
+
+.pw-wrap {
+  position: relative;
+}
+
+.pw-wrap input { padding-right: 4rem; }
+
+.pw-toggle {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pw-toggle:hover { color: var(--text-bright); border-color: var(--text-bright); }
+
+/* Password strength meter */
+
+.pw-strength {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.5rem 0 0;
+}
+
+.pw-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.pw-bar__fill {
+  width: 0;
+  height: 100%;
+  background: var(--text-dim);
+  transition: width 0.18s linear, background 0.18s linear;
+}
+
+.pw-label {
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  color: var(--text-dim);
+  min-width: 4.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pw-strength.pw-weak   .pw-bar__fill { background: var(--red); }
+.pw-strength.pw-weak   .pw-label     { color: var(--red); }
+.pw-strength.pw-fair   .pw-bar__fill { background: var(--amber); }
+.pw-strength.pw-fair   .pw-label     { color: var(--amber); }
+.pw-strength.pw-good   .pw-bar__fill { background: #66dd66; }
+.pw-strength.pw-good   .pw-label     { color: #66dd66; }
+.pw-strength.pw-strong .pw-bar__fill { background: var(--text-bright); box-shadow: 0 0 6px rgba(170, 255, 170, 0.5); }
+.pw-strength.pw-strong .pw-label     { color: var(--text-bright); text-shadow: var(--shadow-glow); }
+
+body[data-test-mode="static"] .pw-bar__fill { transition: none; }
+
 /* ---------- Modal ---------- */
 
 .modal {

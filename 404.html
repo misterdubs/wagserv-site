@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 // wagServ</title>
+  <title>404 // Carrier Lost // wagServ</title>
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -20,17 +20,43 @@
   </header>
 
   <main class="container">
-    <div class="coming-soon">
-      <pre class="ascii coming-soon__art">
-  _  _    ___  _  _
- | || |  / _ \| || |
- | || |_| | | | || |_
- |__   _| |_| |__   _|
-    |_|  \___/   |_|</pre>
-      <p class="coming-soon__msg">// CARRIER LOST //</p>
-      <p>The page you requested could not be located on this BBS.</p>
-      <p><a class="btn btn--amber" href="/">Return to Main Menu</a></p>
+
+    <div class="terminal-box error-404">
+      <div class="terminal-box__header">
+        <span>// SYSTEM RESPONSE //</span>
+        <span>STATUS: 404</span>
+      </div>
+
+      <pre class="ascii error-404__art">
+   _  _    ___  _  _
+  | || |  / _ \| || |
+  | || |_| | | | || |_
+  |__   _| |_| |__   _|
+     |_|  \___/   |_|</pre>
+
+      <p class="error-404__msg">// CARRIER LOST //</p>
+
+      <pre class="error-404__shell">
+[wagServ@bbs ~]$ locate <span id="bad-path" class="text-bright">that-page</span>
+locate: no matching file or directory
+[wagServ@bbs ~]$ <span class="cursor" aria-hidden="true"></span></pre>
+
+      <p>The resource you requested is not on this BBS. It may have been moved, deleted, or it may never have existed at all.</p>
+
+      <h3 class="section-title">Suggested destinations</h3>
+      <ul class="bare-list">
+        <li><span class="stock-badge stock-in">Home</span> <a href="/">return to main menu</a></li>
+        <li><span class="stock-badge stock-in">Catalog</span> <a href="/catalog.html">browse the inventory</a></li>
+        <li><span class="stock-badge stock-low">Contact</span> <a href="/contact.html">transmit a message to the sysop</a></li>
+        <li><span class="stock-badge stock-low">Account</span> <a href="/account.html">sign in or create an account</a></li>
+      </ul>
+
+      <p class="form-actions" style="margin-top:1.5rem;">
+        <a class="btn btn--amber" href="/">Return to Main Menu</a>
+        <a class="btn" href="javascript:history.back()">Go Back</a>
+      </p>
     </div>
+
   </main>
 
   <footer class="site-footer">
@@ -40,5 +66,14 @@
       <span>SYSOP: 0xDEADBEEF</span>
     </div>
   </footer>
+
+  <script>
+    // Show the path the user actually requested, lightly sanitized
+    const raw = location.pathname + location.search;
+    const safe = raw.replace(/[<>"'`]/g, "").slice(0, 80);
+    if (safe && safe !== "/404.html") {
+      document.getElementById("bad-path").textContent = safe;
+    }
+  </script>
 </body>
 </html>

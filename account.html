@@ -21,14 +21,124 @@
 
   <main class="container">
     <h1>Account</h1>
-    <div class="coming-soon">
-      <pre class="ascii coming-soon__art">
-   _   _   _ _____ _  _
-  /_\ | | | |_   _| || |
- / _ \| |_| | | | | __ |
-/_/ \_\\___/  |_| |_||_|</pre>
-      <p class="coming-soon__msg">// LOGIN PORTAL COMING SOON //</p>
-      <p>Sign-in and registration will be available shortly.</p>
+    <p class="hero__tagline">// authenticate to access the BBS // new users welcome //</p>
+
+    <div class="auth-wrap">
+      <div class="tabs" id="auth-tabs">
+        <div role="tablist" class="tabs__list">
+          <button role="tab" class="tab is-active" data-tab="login"  aria-selected="true">Login</button>
+          <button role="tab" class="tab"           data-tab="signup" aria-selected="false">Sign Up</button>
+        </div>
+
+        <!-- LOGIN -->
+        <section role="tabpanel" class="tab-panel is-active" data-panel="login">
+          <form class="auth-form" id="login-form" novalidate>
+            <div class="field">
+              <label for="login-email">Email <span class="required">*</span></label>
+              <input id="login-email" name="email" type="email" autocomplete="username" required />
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+
+            <div class="field">
+              <label for="login-pw">Password <span class="required">*</span></label>
+              <div class="pw-wrap">
+                <input id="login-pw" name="password" type="password" autocomplete="current-password" required />
+                <button type="button" class="pw-toggle" aria-label="Show password" data-target="login-pw">show</button>
+              </div>
+              <p class="field-error" data-error-for="password"></p>
+            </div>
+
+            <div class="field-row">
+              <label class="check-label">
+                <input type="checkbox" name="remember" />
+                <span>Remember me on this terminal</span>
+              </label>
+              <a href="#" class="forgot-link" onclick="return false;">Forgot password?</a>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--amber">Sign In</button>
+            </div>
+
+            <p class="auth-footnote">No account? <a href="#" data-switch-tab="signup">Create one</a> &mdash; first 1,000 carriers get free shipping.</p>
+          </form>
+        </section>
+
+        <!-- SIGN UP -->
+        <section role="tabpanel" class="tab-panel" data-panel="signup" hidden>
+          <form class="auth-form" id="signup-form" novalidate>
+            <div class="field">
+              <label for="signup-handle">Handle <span class="required">*</span></label>
+              <input id="signup-handle" name="handle" type="text" autocomplete="username" placeholder="e.g. cap'n_phreak" required />
+              <p class="field-help">3&ndash;20 characters. Letters, numbers, underscore, apostrophe.</p>
+              <p class="field-error" data-error-for="handle"></p>
+            </div>
+
+            <div class="field">
+              <label for="signup-email">Email <span class="required">*</span></label>
+              <input id="signup-email" name="email" type="email" autocomplete="email" required />
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+
+            <div class="field">
+              <label for="signup-pw">Password <span class="required">*</span></label>
+              <div class="pw-wrap">
+                <input id="signup-pw" name="password" type="password" autocomplete="new-password" required />
+                <button type="button" class="pw-toggle" aria-label="Show password" data-target="signup-pw">show</button>
+              </div>
+              <div class="pw-strength" id="pw-strength" aria-hidden="true">
+                <div class="pw-bar"><div class="pw-bar__fill" id="pw-bar-fill"></div></div>
+                <span class="pw-label" id="pw-label">&mdash;</span>
+              </div>
+              <p class="field-help">Minimum 8 chars. Mix upper/lower, digits, and symbols for a strong password.</p>
+              <p class="field-error" data-error-for="password"></p>
+            </div>
+
+            <div class="field">
+              <label for="signup-pw2">Confirm password <span class="required">*</span></label>
+              <input id="signup-pw2" name="password2" type="password" autocomplete="new-password" required />
+              <p class="field-error" data-error-for="password2"></p>
+            </div>
+
+            <div class="field">
+              <label class="check-label">
+                <input type="checkbox" name="terms" required />
+                <span>I agree to the <a href="#" onclick="return false;">Terms of Service</a> and <a href="#" onclick="return false;">Code of Conduct</a> <span class="required">*</span></span>
+              </label>
+              <p class="field-error" data-error-for="terms"></p>
+            </div>
+
+            <div class="field">
+              <label class="check-label">
+                <input type="checkbox" name="newsletter" checked />
+                <span>Send me the wagServ newsletter (quarterly)</span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--amber">Create Account</button>
+            </div>
+
+            <p class="auth-footnote">Already a carrier? <a href="#" data-switch-tab="login">Sign in</a>.</p>
+          </form>
+        </section>
+      </div>
+
+      <!-- Success panel (hidden by default) -->
+      <div class="form-success" id="auth-success" hidden>
+        <pre class="ascii">
+   ___ ___  _  _ _  _ ___ ___ _____ ___ ___
+  / __/ _ \| \| | \| | __/ __|_   _| __|   \
+ | (_| (_) | .` | .` | _| (__  | | | _|| |) |
+  \___\___/|_|\_|_|\_|___\___| |_| |___|___/</pre>
+        <p class="coming-soon__msg" id="success-msg">// CARRIER ESTABLISHED //</p>
+        <p id="success-detail">Welcome to wagServ. Your session is active.</p>
+        <p>
+          <a class="btn btn--amber" href="/catalog.html">Browse the Catalog</a>
+          <a class="btn" href="/">Main Menu</a>
+        </p>
+      </div>
+
     </div>
   </main>
 
@@ -39,5 +149,184 @@
       <span>SYSOP: 0xDEADBEEF</span>
     </div>
   </footer>
+
+  <script>
+    // ---- Tab switching ---------------------------------------------
+    const tabs = document.querySelectorAll('#auth-tabs [role="tab"]');
+    const panels = document.querySelectorAll('#auth-tabs .tab-panel');
+
+    function activateTab(name) {
+      tabs.forEach(t => {
+        const on = t.dataset.tab === name;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", String(on));
+      });
+      panels.forEach(p => {
+        const on = p.dataset.panel === name;
+        p.classList.toggle("is-active", on);
+        p.hidden = !on;
+      });
+    }
+
+    tabs.forEach(t => t.addEventListener("click", () => activateTab(t.dataset.tab)));
+    document.querySelectorAll("[data-switch-tab]").forEach(a =>
+      a.addEventListener("click", e => { e.preventDefault(); activateTab(a.dataset.switchTab); })
+    );
+
+    // ---- Password show/hide ----------------------------------------
+    document.querySelectorAll(".pw-toggle").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const input = document.getElementById(btn.dataset.target);
+        const showing = input.type === "text";
+        input.type = showing ? "password" : "text";
+        btn.textContent = showing ? "show" : "hide";
+        btn.setAttribute("aria-label", (showing ? "Show" : "Hide") + " password");
+      });
+    });
+
+    // ---- Password strength meter -----------------------------------
+    const STRENGTH_LEVELS = [
+      { min: 0,  cls: "pw-empty",  label: "—" },
+      { min: 1,  cls: "pw-weak",   label: "Weak" },
+      { min: 35, cls: "pw-fair",   label: "Fair" },
+      { min: 60, cls: "pw-good",   label: "Good" },
+      { min: 85, cls: "pw-strong", label: "Strong" }
+    ];
+
+    function scorePassword(pw) {
+      if (!pw) return 0;
+      let s = 0;
+      s += Math.min(pw.length * 4, 40);                  // length up to 40
+      if (/[a-z]/.test(pw)) s += 8;
+      if (/[A-Z]/.test(pw)) s += 10;
+      if (/[0-9]/.test(pw)) s += 10;
+      if (/[^A-Za-z0-9]/.test(pw)) s += 18;
+      const variety = (/[a-z]/.test(pw) ? 1 : 0) + (/[A-Z]/.test(pw) ? 1 : 0) +
+                      (/[0-9]/.test(pw) ? 1 : 0) + (/[^A-Za-z0-9]/.test(pw) ? 1 : 0);
+      if (variety >= 3 && pw.length >= 10) s += 10;
+      if (variety >= 4 && pw.length >= 12) s += 8;
+      // common-password penalties
+      if (/^(password|qwerty|letmein|hunter2|123456|2600)/i.test(pw)) s = Math.min(s, 20);
+      return Math.min(100, s);
+    }
+
+    function levelFor(score) {
+      let lvl = STRENGTH_LEVELS[0];
+      for (const l of STRENGTH_LEVELS) if (score >= l.min) lvl = l;
+      return lvl;
+    }
+
+    const pwInput = document.getElementById("signup-pw");
+    const pwBarFill = document.getElementById("pw-bar-fill");
+    const pwLabel = document.getElementById("pw-label");
+    const pwMeter = document.getElementById("pw-strength");
+
+    function updateStrength(value) {
+      const score = scorePassword(value);
+      const lvl = levelFor(score);
+      pwBarFill.style.width = score + "%";
+      pwMeter.className = "pw-strength " + lvl.cls;
+      pwLabel.textContent = lvl.label;
+    }
+
+    pwInput.addEventListener("input", e => updateStrength(e.target.value));
+
+    // ---- Validation helpers ----------------------------------------
+    function setError(form, name, msg) {
+      const field = form.elements[name];
+      const wrap = field.closest(".field");
+      const out = wrap ? wrap.querySelector(`[data-error-for="${name}"]`) : null;
+      if (out) out.textContent = msg;
+      if (wrap) wrap.classList.toggle("field--error", !!msg);
+      if (wrap) wrap.classList.toggle("field--valid", !msg);
+    }
+
+    function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    // ---- Login validation ------------------------------------------
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const email = (loginForm.elements.email.value || "").trim();
+      const pw = loginForm.elements.password.value || "";
+      let ok = true;
+      if (!email) { setError(loginForm, "email", "Email is required."); ok = false; }
+      else if (!emailOk(email)) { setError(loginForm, "email", "Enter a valid email address."); ok = false; }
+      else setError(loginForm, "email", "");
+      if (!pw) { setError(loginForm, "password", "Password is required."); ok = false; }
+      else setError(loginForm, "password", "");
+      if (ok) showSuccess("// CARRIER ESTABLISHED //", "Welcome back, " + email.split("@")[0] + ". Your session is active.");
+    });
+
+    // ---- Signup validation -----------------------------------------
+    const signupForm = document.getElementById("signup-form");
+    signupForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const handle = (signupForm.elements.handle.value || "").trim();
+      const email = (signupForm.elements.email.value || "").trim();
+      const pw = signupForm.elements.password.value || "";
+      const pw2 = signupForm.elements.password2.value || "";
+      const terms = signupForm.elements.terms.checked;
+      let ok = true;
+
+      if (!handle) { setError(signupForm, "handle", "Handle is required."); ok = false; }
+      else if (!/^[a-zA-Z0-9_']{3,20}$/.test(handle)) { setError(signupForm, "handle", "3-20 chars, letters/numbers/_/' only."); ok = false; }
+      else setError(signupForm, "handle", "");
+
+      if (!email) { setError(signupForm, "email", "Email is required."); ok = false; }
+      else if (!emailOk(email)) { setError(signupForm, "email", "Enter a valid email address."); ok = false; }
+      else setError(signupForm, "email", "");
+
+      if (!pw) { setError(signupForm, "password", "Password is required."); ok = false; }
+      else if (pw.length < 8) { setError(signupForm, "password", "Minimum 8 characters."); ok = false; }
+      else if (scorePassword(pw) < 35) { setError(signupForm, "password", "Password is too weak."); ok = false; }
+      else setError(signupForm, "password", "");
+
+      if (!pw2) { setError(signupForm, "password2", "Please confirm your password."); ok = false; }
+      else if (pw !== pw2) { setError(signupForm, "password2", "Passwords do not match."); ok = false; }
+      else setError(signupForm, "password2", "");
+
+      if (!terms) { setError(signupForm, "terms", "You must accept the terms."); ok = false; }
+      else setError(signupForm, "terms", "");
+
+      if (ok) showSuccess("// ACCOUNT PROVISIONED //", "Welcome aboard, " + handle + ". Check your email for a confirmation message.");
+    });
+
+    function showSuccess(title, detail) {
+      document.querySelector(".tabs").hidden = true;
+      const success = document.getElementById("auth-success");
+      document.getElementById("success-msg").textContent = title;
+      document.getElementById("success-detail").textContent = detail;
+      success.hidden = false;
+      success.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ---- Demo modes -----------------------------------------------
+    // ?tab=signup            -> open signup tab
+    // ?demo=login-errors     -> login tab with errors
+    // ?demo=signup-errors    -> signup tab with errors
+    // ?demo=signup-strong    -> signup tab pre-filled with a strong password
+    // ?demo=success          -> success state
+    const params = new URLSearchParams(location.search);
+    if (params.get("tab") === "signup") activateTab("signup");
+
+    const demo = params.get("demo");
+    if (demo === "login-errors") {
+      loginForm.dispatchEvent(new Event("submit"));
+    } else if (demo === "signup-errors") {
+      activateTab("signup");
+      signupForm.dispatchEvent(new Event("submit"));
+    } else if (demo === "signup-strong") {
+      activateTab("signup");
+      signupForm.elements.handle.value = "cap'n_phreak";
+      signupForm.elements.email.value = "carrier@phreak.example";
+      signupForm.elements.password.value = "Tr0ub4dor&3lephant!";
+      signupForm.elements.password2.value = "Tr0ub4dor&3lephant!";
+      signupForm.elements.terms.checked = true;
+      updateStrength(signupForm.elements.password.value);
+    } else if (demo === "success") {
+      showSuccess("// ACCOUNT PROVISIONED //", "Welcome aboard. Check your email for a confirmation message.");
+    }
+  </script>
 </body>
 </html>

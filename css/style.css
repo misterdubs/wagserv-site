@@ -1,0 +1,392 @@
+/* ============================================================
+   wagServ — Underground Telecom Supply Co.
+   90s hacker / phreaker theme
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg:           #0a0a0a;
+  --bg-alt:       #111111;
+  --bg-panel:     #0f1a0f;
+  --text:         #33ff33;
+  --text-dim:     #1a8f1a;
+  --text-bright:  #aaffaa;
+  --amber:        #ffb000;
+  --red:          #ff3344;
+  --border:       #1f5f1f;
+  --border-bright:#33ff33;
+  --shadow-glow:  0 0 6px rgba(51, 255, 51, 0.45);
+  --font-display: 'VT323', 'Courier New', Courier, monospace;
+  --font-body:    'Share Tech Mono', 'Courier New', Courier, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* CRT scanline overlay (static; no animation) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.18),
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Subtle vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* ---------- Typography ---------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text-bright);
+  text-shadow: var(--shadow-glow);
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.6em;
+}
+
+h1 { font-size: 2.6rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+a:hover, a:focus {
+  color: var(--text-bright);
+  background: rgba(51, 255, 51, 0.1);
+}
+
+code, pre, .mono { font-family: var(--font-body); }
+
+pre.ascii {
+  font-family: var(--font-body);
+  color: var(--text);
+  text-shadow: var(--shadow-glow);
+  line-height: 1;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+main {
+  padding: 2rem 0 4rem;
+}
+
+/* ---------- Header / Nav ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  background: var(--bg-alt);
+}
+
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--text-bright);
+  text-shadow: var(--shadow-glow);
+  border: none;
+  letter-spacing: 0.04em;
+}
+
+.brand:hover { background: transparent; color: var(--text-bright); }
+
+.brand .bracket { color: var(--text-dim); }
+
+.site-nav {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.site-nav__link {
+  font-family: var(--font-body);
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus {
+  border-color: var(--text-bright);
+  color: var(--text-bright);
+  background: rgba(51, 255, 51, 0.08);
+  text-shadow: var(--shadow-glow);
+}
+
+.site-nav__link[aria-current="page"] {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: rgba(255, 176, 0, 0.08);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 2.5rem;
+}
+
+.hero__art {
+  font-size: 0.78rem;
+  margin-bottom: 1rem;
+  color: var(--text-bright);
+}
+
+.hero__tagline {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero__lead {
+  max-width: 640px;
+  margin: 1rem auto 1.5rem;
+  color: var(--text);
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--text-bright);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-bright);
+  cursor: pointer;
+  text-decoration: none;
+  transition: none;
+}
+
+.btn:hover, .btn:focus {
+  background: var(--text-bright);
+  color: var(--bg);
+  text-shadow: none;
+}
+
+.btn--amber {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.btn--amber:hover, .btn--amber:focus {
+  background: var(--amber);
+  color: var(--bg);
+}
+
+/* ---------- Feature grid (home page) ---------- */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+}
+
+.feature-card:hover {
+  border-color: var(--text-bright);
+  box-shadow: var(--shadow-glow);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: var(--amber);
+  text-shadow: 0 0 4px rgba(255, 176, 0, 0.4);
+}
+
+.feature-card__price {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: var(--text-bright);
+  margin: 0.5rem 0 0.8rem;
+  border-bottom: 1px dotted var(--border);
+  padding-bottom: 0.3rem;
+}
+
+.feature-card__sku {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Section headings (terminal-style) ---------- */
+
+.section-title {
+  display: block;
+  margin: 2rem 0 1rem;
+  color: var(--text-bright);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+}
+
+.section-title::before {
+  content: '> ';
+  color: var(--amber);
+}
+
+/* ---------- Boxes ---------- */
+
+.terminal-box {
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.terminal-box__header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.site-footer__bbs {
+  font-family: var(--font-display);
+  color: var(--amber);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Stub "coming soon" pages ---------- */
+
+.coming-soon {
+  text-align: center;
+  padding: 3rem 0;
+  border: 1px dashed var(--border);
+  margin: 2rem 0;
+}
+
+.coming-soon__art {
+  font-size: 0.85rem;
+  color: var(--text-bright);
+  margin-bottom: 1.5rem;
+}
+
+.coming-soon__msg {
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  h1 { font-size: 2rem; }
+  .hero__art { font-size: 0.5rem; }
+  .site-header__inner { flex-direction: column; align-items: flex-start; }
+  .site-footer__inner { flex-direction: column; text-align: center; }
+}
+
+/* ---------- Visual-test friendliness ----------
+   Add data-test-mode="static" to <body> to freeze animations. */
+body[data-test-mode="static"] .cursor { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+}

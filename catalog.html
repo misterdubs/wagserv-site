@@ -21,15 +21,60 @@
 
   <main class="container">
     <h1>Catalog</h1>
-    <div class="coming-soon">
-      <pre class="ascii coming-soon__art">
-   ___  ___  __  __ ___ _  _  ___   ___  ___   ___  _  _
-  / __|/ _ \|  \/  |_ _| \| |/ __| / __|/ _ \ / _ \| \| |
- | (__| (_) | |\/| || || .` | (_ | \__ \ (_) | (_) | .` |
-  \___|\___/|_|  |_|___|_|\_|\___| |___/\___/ \___/|_|\_|</pre>
-      <p class="coming-soon__msg">// LOADING PRODUCT DATABASE //</p>
-      <p>This page is under construction. Check back soon for the full inventory.</p>
+    <p class="hero__tagline">// 20 items in inventory // 7 categories //</p>
+
+    <div class="filter-bar">
+      <div class="filter-bar__field">
+        <label for="search">Search:</label>
+        <input id="search" type="search" placeholder="name or SKU" autocomplete="off" />
+      </div>
+      <div class="filter-bar__field">
+        <label for="category">Category:</label>
+        <select id="category">
+          <option value="">All</option>
+          <option value="Phreaking">Phreaking</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Software">Software</option>
+          <option value="Tools">Tools</option>
+          <option value="Books">Books</option>
+          <option value="Media">Media</option>
+          <option value="Misc">Misc</option>
+        </select>
+      </div>
+      <div class="filter-bar__field">
+        <label for="stock">Stock:</label>
+        <select id="stock">
+          <option value="">Any</option>
+          <option value="in">In stock</option>
+          <option value="low">Low stock</option>
+          <option value="out">Out of stock</option>
+        </select>
+      </div>
+      <div class="filter-bar__count">
+        <span id="result-count">20</span> / 20 shown
+      </div>
     </div>
+
+    <div class="table-wrap">
+    <table class="catalog-table" id="catalog">
+      <thead>
+        <tr>
+          <th class="sortable" data-key="sku" data-type="string">SKU</th>
+          <th class="sortable" data-key="name" data-type="string">Item</th>
+          <th class="sortable" data-key="category" data-type="string">Category</th>
+          <th class="sortable" data-key="price" data-type="number">Price</th>
+          <th class="sortable" data-key="stockOrder" data-type="number">Stock</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody id="catalog-body">
+        <!-- rows injected by JS -->
+      </tbody>
+    </table>
+    </div>
+
+    <p id="empty-state" class="empty-state" hidden>// NO RESULTS // adjust your filters</p>
+
   </main>
 
   <footer class="site-footer">
@@ -39,5 +84,103 @@
       <span>SYSOP: 0xDEADBEEF</span>
     </div>
   </footer>
+
+  <script>
+    const PRODUCTS = [
+      { sku: "WAR-2400", name: "Wardialer Pro 2400",            category: "Software",  price: 69.95,  stock: "in"  },
+      { sku: "CCW-2600", name: "Cap'n Crunch Whistle",          category: "Phreaking", price: 19.99,  stock: "in"  },
+      { sku: "BBX-MK4",  name: "Blue Box Mark IV",              category: "Phreaking", price: 149.95, stock: "low" },
+      { sku: "RBX-DIY",  name: "Red Box DIY Kit",               category: "Phreaking", price: 34.95,  stock: "in"  },
+      { sku: "BLK-MOD",  name: "Black Box Module",              category: "Phreaking", price: 39.95,  stock: "out" },
+      { sku: "BEG-LMN",  name: "Beige Box Lineman's Set",       category: "Phreaking", price: 89.95,  stock: "in"  },
+      { sku: "HSM-2400", name: "Hayes Smartmodem 2400 (refurb)",category: "Hardware",  price: 129.95, stock: "low" },
+      { sku: "ACS-CPL",  name: "Acoustic Coupler",              category: "Hardware",  price: 54.95,  stock: "in"  },
+      { sku: "RJ11-TAP", name: "RJ-11 Tap Splitter",            category: "Hardware",  price: 12.99,  stock: "in"  },
+      { sku: "TMP-SHD",  name: "TEMPEST Shielding Roll",        category: "Hardware",  price: 89.95,  stock: "out" },
+      { sku: "LCK-PRM",  name: "Lock Pick Set (Premium)",       category: "Tools",     price: 44.95,  stock: "in"  },
+      { sku: "BMP-MULTI",name: "Bump Key Multipack",            category: "Tools",     price: 24.95,  stock: "in"  },
+      { sku: "TON-MOD",  name: "Tone Dialer (modded)",          category: "Phreaking", price: 32.95,  stock: "low" },
+      { sku: "BBS-94",   name: "BBS List '94 (Print)",          category: "Books",     price: 9.95,   stock: "in"  },
+      { sku: "PHK-ANT",  name: "The Phrack Anthology Vol. 1-12",category: "Books",     price: 39.95,  stock: "in"  },
+      { sku: "TON-CD",   name: "2600 Hz Tone CD",               category: "Media",     price: 14.95,  stock: "in"  },
+      { sku: "MIC-REC",  name: "Microcassette Recorder",        category: "Hardware",  price: 59.95,  stock: "low" },
+      { sku: "WG-AUTO",  name: "WarGames-style Auto-Dialer ROM",category: "Software",  price: 29.95,  stock: "out" },
+      { sku: "SMC-PRG",  name: "Smart Card Programmer",         category: "Hardware",  price: 179.95, stock: "in"  },
+      { sku: "PEZ-CMP",  name: "PEZ Dispenser w/ Compartment",  category: "Misc",      price: 7.99,   stock: "in"  }
+    ];
+
+    const STOCK_LABEL = { in: "In stock", low: "Low stock", out: "Out of stock" };
+    const STOCK_ORDER = { in: 0, low: 1, out: 2 };
+
+    const tbody = document.getElementById("catalog-body");
+    const emptyState = document.getElementById("empty-state");
+    const resultCount = document.getElementById("result-count");
+    const searchInput = document.getElementById("search");
+    const categorySel = document.getElementById("category");
+    const stockSel = document.getElementById("stock");
+    const headers = document.querySelectorAll("th.sortable");
+
+    let sortKey = "sku";
+    let sortDir = 1; // 1 = asc, -1 = desc
+
+    function render() {
+      const q = searchInput.value.trim().toLowerCase();
+      const cat = categorySel.value;
+      const stk = stockSel.value;
+
+      let rows = PRODUCTS
+        .map(p => ({ ...p, stockOrder: STOCK_ORDER[p.stock] }))
+        .filter(p =>
+          (!q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)) &&
+          (!cat || p.category === cat) &&
+          (!stk || p.stock === stk)
+        );
+
+      rows.sort((a, b) => {
+        const av = a[sortKey], bv = b[sortKey];
+        if (typeof av === "number") return (av - bv) * sortDir;
+        return String(av).localeCompare(String(bv)) * sortDir;
+      });
+
+      tbody.innerHTML = rows.map(p => `
+        <tr>
+          <td class="mono">${p.sku}</td>
+          <td>${p.name}</td>
+          <td>${p.category}</td>
+          <td class="num">$${p.price.toFixed(2)}</td>
+          <td><span class="stock-badge stock-${p.stock}">${STOCK_LABEL[p.stock]}</span></td>
+          <td><a class="btn btn--small" href="/product.html?sku=${p.sku}">View</a></td>
+        </tr>
+      `).join("");
+
+      resultCount.textContent = rows.length;
+      emptyState.hidden = rows.length > 0;
+
+      headers.forEach(h => {
+        h.removeAttribute("aria-sort");
+        h.classList.remove("sort-asc", "sort-desc");
+        if (h.dataset.key === sortKey) {
+          h.setAttribute("aria-sort", sortDir === 1 ? "ascending" : "descending");
+          h.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
+        }
+      });
+    }
+
+    headers.forEach(h => {
+      h.addEventListener("click", () => {
+        const key = h.dataset.key;
+        if (key === sortKey) sortDir = -sortDir;
+        else { sortKey = key; sortDir = 1; }
+        render();
+      });
+    });
+
+    searchInput.addEventListener("input", render);
+    categorySel.addEventListener("change", render);
+    stockSel.addEventListener("change", render);
+
+    render();
+  </script>
+
 </body>
 </html>

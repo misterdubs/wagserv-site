@@ -374,6 +374,180 @@ main {
   letter-spacing: 0.05em;
 }
 
+/* ---------- Forms (shared) ---------- */
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.7rem;
+  width: 100%;
+  outline: none;
+  border-radius: 0;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--text-bright);
+  box-shadow: var(--shadow-glow);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text) 50%),
+                    linear-gradient(135deg, var(--text) 50%, transparent 50%);
+  background-position: calc(100% - 18px) center, calc(100% - 12px) center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
+textarea { min-height: 6rem; resize: vertical; }
+
+/* ---------- Filter bar (catalog) ---------- */
+
+.filter-bar {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  margin: 1rem 0 1.5rem;
+}
+
+.filter-bar__field {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.filter-bar__count {
+  margin-left: auto;
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ---------- Catalog table ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+
+.catalog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.catalog-table th,
+.catalog-table td {
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px dashed var(--border);
+  vertical-align: middle;
+}
+
+.catalog-table th {
+  background: var(--bg-alt);
+  color: var(--text-bright);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: normal;
+  border-bottom: 1px solid var(--border-bright);
+}
+
+.catalog-table td.num,
+.catalog-table th.num { text-align: right; }
+
+.catalog-table tbody tr:hover {
+  background: rgba(51, 255, 51, 0.06);
+}
+
+.catalog-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 1.6rem;
+}
+
+.catalog-table th.sortable::after {
+  content: '\2195';     /* up-down */
+  position: absolute;
+  right: 0.7rem;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.catalog-table th.sort-asc::after  { content: '\25B2'; color: var(--amber); }
+.catalog-table th.sort-desc::after { content: '\25BC'; color: var(--amber); }
+
+/* ---------- Stock badges ---------- */
+
+.stock-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid currentColor;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.stock-in   { color: var(--text-bright); }
+.stock-low  { color: var(--amber); }
+.stock-out  { color: var(--red); opacity: 0.85; }
+
+/* ---------- Buttons (small variant) ---------- */
+
+.btn--small {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-dim);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  border: 1px dashed var(--border);
+  margin-top: 1rem;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 640px) {

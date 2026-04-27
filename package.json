@@ -1,0 +1,13 @@
+{
+  "name": "wagserv-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "wagServ visual regression tests",
+  "scripts": {
+    "test:visual": "playwright test"
+  },
+  "devDependencies": {
+    "@applitools/eyes-playwright": "^1.34.0",
+    "@playwright/test": "^1.49.0"
+  }
+}

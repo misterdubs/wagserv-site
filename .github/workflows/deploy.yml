@@ -30,5 +30,12 @@ jobs:
             --exclude='.github/' \
             --exclude='README.md' \
             --exclude='.gitignore' \
+            --exclude='node_modules/' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='playwright.config.js' \
+            --exclude='tests/' \
+            --exclude='playwright-report/' \
+            --exclude='test-results/' \
             -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
             ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/usr/share/nginx/html/"
